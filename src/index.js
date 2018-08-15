@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../node_modules/font-awesome/css/font-awesome.min.css';
+import HelloWorld from "./hello";
+
 ReactDOM.render(
-    <h1>Hello, world!</h1>,
+    <HelloWorld/>,
     document.getElementById('root')
 );
