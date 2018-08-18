@@ -59,10 +59,7 @@ class SearchBar extends React.Component {
     render() {
         return(
             <div>
-            <div align="center">
-                    <h1>Hello, world!</h1>
-                    <h2> Welcome to the bookbucket app </h2>
-            </div>
+            <br/>
                 <div>
 
                         <div className="inputField">
@@ -73,8 +70,9 @@ class SearchBar extends React.Component {
                                    value={this.state.searchString}
                                    className="form-control"
                                    placeholder="title"/>
-                            <button className="btn btn-primary" onClick={this.createSearch}>Search</button>
+                            <button className="btn btn-primary btn-block" onClick={this.createSearch}>Search</button>
                         </div>
+                    <br/>
                     <div className="card-deck">
                     {this.renderBooks()}
                     </div>

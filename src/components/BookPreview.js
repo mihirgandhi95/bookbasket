@@ -23,13 +23,13 @@ export default class BookPreview extends React.Component {
 
     render() {
         return(
-            <div className="pageView">
+            <div align ="center" className="pageView">
                 <div>
-                    <div className="row" style={{marginTop: "81px"}}>
-                        <div className="col-sm-8 mainSec">
+
+                            <br/>
                             <div id="viewerCanvas" style={{width: "600px", height: "800px"}}></div>
-                        </div>
-                    </div>
+
+
                 </div>
             </div>
         );
