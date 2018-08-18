@@ -1,18 +1,16 @@
 
-import React from 'react';
+import React,{Component} from 'react';
 import SearchService from "../services/SearchService"
+import BookCard from "./BookCard";
 
-class HelloWorld extends React.Component {
-
-
-
-
+class SearchBar extends React.Component {
 
 
     constructor(){
         super();
         this.state = {
             searchString: '',
+            arrayOfBooksObject : [],
         };
         this.SearchService = SearchService.instance;
         this.titleChanged = this.titleChanged.bind(this);
@@ -28,12 +26,35 @@ class HelloWorld extends React.Component {
 
 
         this.SearchService.search(this.state.searchString).then((response)=> {
-            console.log(response)
+           // console.log("************ this is the response ***********")
+           // console.log(response.items);
+
+
+            this.setState(
+                {
+                    arrayOfBooksObject: response.items,
+                }
+            );
         });
-
-
     }
 
+    renderBooks()
+    {
+        var grid = this.state.arrayOfBooksObject.map((book)=>{
+
+            console.log("********* each item of the books array *********")
+            console.log(book)
+            return(
+                <div>
+                        {/*<img src = {book.volumeInfo.imageLinks.thumbnail}></img>*/}
+
+                    <BookCard book={book} key={book.id}/>
+
+                </div>
+            )
+        })
+        return(grid)
+    }
 
     render() {
         return(
@@ -54,6 +75,9 @@ class HelloWorld extends React.Component {
                                    placeholder="title"/>
                             <button className="btn btn-primary" onClick={this.createSearch}>Search</button>
                         </div>
+                    <div className="card-deck">
+                    {this.renderBooks()}
+                    </div>
 
 
                 </div>
@@ -61,4 +85,7 @@ class HelloWorld extends React.Component {
         )
     }
 }
-export default HelloWorld;
+
+
+
+export default SearchBar;

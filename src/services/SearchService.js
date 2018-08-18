@@ -30,11 +30,6 @@ export default class SearchService {
 
      }
      else{
-
-
-
-
-
          return fetch(
              SEARCH_URL + searchString)
              .then( (response) =>  {
@@ -44,4 +39,11 @@ export default class SearchService {
 
     }
 
+
+    createSearchForDescription(isbnId) {
+        return fetch(
+            SEARCH_URL+'isbn:'+isbnId).then((response) => {
+            return response.json();
+        });
+    }
 }
