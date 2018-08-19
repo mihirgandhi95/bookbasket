@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import SearchService from "../services/SearchService"
 import {Link, Route} from 'react-router-dom'
@@ -18,7 +17,8 @@ export default class BookViewer extends React.Component {
         this.state = {
             user: {userId: ''},
             book: {},
-            notes: []
+            notes: [],
+            currentNote: 'temp'
         };
 
         this.userService = UserService.instance;
@@ -30,40 +30,32 @@ export default class BookViewer extends React.Component {
 
     componentDidMount() {
         this.userService.getProfile().then(response => {
-                if (response.status == 500)
-                    return
+            if (response.status == 500)
+                return
 
-                this.setState({
+            this.setState({
 
-                    user: response
-                });
-                this.bookService.findBookByISBN(this.props.book.volumeInfo.industryIdentifiers[0].identifier).then(response => {
+                user: response
+            });
+            this.bookService.findBookByISBN(this.props.book.volumeInfo.industryIdentifiers[0].identifier).then(response => {
                     this.setState({
 
                         book: response
                     });
-
-                    if(this.state.book!=null)
-                    {
-                        this.noteService.fetchNotesForBooks(this.state.user.userId, this.state.book.id).then(response => {
-                            this.setState({
-
-                                notes: response
-                            });
-                        })
+                    if (this.state.book != null) {
+                        this.noteService.fetchNotesForBooks(this.state.user.userId, this.state.book.id).then(responseReview => this.setState({
+                            notes:responseReview
+                        }));
                     }
-                })
-
-
-            }
-        )
-        ;
+                }
+            )
+        })
     }
 
     handleNotesClick(event) {
         console.log(this.state.book);
-        if(this.state.book == null){
-            const newBook ={
+        if (this.state.book == null) {
+            const newBook = {
                 title: this.props.book.volumeInfo.title,
                 imageLink: this.props.book.volumeInfo.imageLinks.thumbnail,
                 isbn10: this.props.book.volumeInfo.industryIdentifiers[0].identifier
@@ -71,22 +63,32 @@ export default class BookViewer extends React.Component {
 
             this.bookService.addBook(newBook).then(response => {
                     this.setState({
-
                         book: response
                     })
-                console.log(this.state.book);
-
+                    console.log(this.state.book);
+                    var note = {
+                        noteComment: this.state.currentNote
+                    }
+                    this.noteService.addNoteForBook(this.state.user.userId, this.state.book.id, note).then(response =>  this.noteService.fetchNotesForBooks(this.state.user.userId, this.state.book.id).then(responseReview => this.setState({
+                        notes:responseReview
+                    })));
                 }
             )
         }
-        else{
+        else {
+            console.log(this.state.book);
+            var note = {
+                noteComment: this.state.currentNote
+            }
             console.log('in else');
+            this.noteService.addNoteForBook(this.state.user.userId, this.state.book.id, note).then(response =>   this.noteService.fetchNotesForBooks(this.state.user.userId, this.state.book.id).then(responseReview => this.setState({
+                notes:responseReview
+            })))
         }
     }
 
 
-
-render() {
+    render() {
         return (
 
             <div>
@@ -101,8 +103,8 @@ render() {
                                                               style={{width: "200px", height: "300px"}}/>}
 
 
-
-                        {this.state.user.userId !== '' &&  <a href={"/bookpreview/" + this.props.book.volumeInfo.industryIdentifiers[0].identifier}>
+                        {this.state.user.userId !== '' &&
+                        <a href={"/bookpreview/" + this.props.book.volumeInfo.industryIdentifiers[0].identifier}>
                             <img className="card-img-top"
                                  src={this.props.book.volumeInfo.imageLinks.thumbnail}
                                  style={{width: "200px", height: "300px"}}/>
@@ -126,7 +128,8 @@ render() {
                             <div className="col-4">
                                 <p><strong>Rating: </strong>{this.props.book.volumeInfo.averageRating}</p>
 
-                                {this.props.book.volumeInfo.categories !== undefined && <p><strong>Category:</strong> {this.props.book.volumeInfo.categories[0]}</p>}
+                                {this.props.book.volumeInfo.categories !== undefined &&
+                                <p><strong>Category:</strong> {this.props.book.volumeInfo.categories[0]}</p>}
                             </div>
                         </div>
 
@@ -148,13 +151,21 @@ render() {
                         <div className="input-group-prepend">
                             <span className="input-group-text">Personal Notes</span>
                         </div>
-                        <textarea className="form-control" aria-label="With textarea"></textarea>
+                        <textarea
+                            onChange = {(event) => {this.setState({currentNote:event.target.value})
+                            console.log(event.target.value)
+                            }}
+                            className="form-control" aria-label="With textarea">sdsda</textarea>
                         <button className="btn btn-primary" onClick={(event) => {
                             this.handleNotesClick(event)
                         }}>Submit
                         </button>
                     </div>
+                    <div>
+                        {this.state.notes.map(note => <h4> {note.noteComment} </h4>)}
+                    </div>
                 </div>
+
 
                 }
             </div>

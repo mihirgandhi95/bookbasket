@@ -31,10 +31,8 @@ export default class NoteService {
 
 
     fetchNotesForBooks(userId,bookId){
-        return fetch(BASE_URL+'note/user'+userId+'/book/'+bookId).then(response => {
-            console.log(response)
-            return response.json()
-        });
+        return fetch(BASE_URL+'note/user/'+userId+'/book/'+bookId).then(response => response.json()
+        );
     }
 
 
