@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 import SearchService from "../services/SearchService"
 import {Link, Route} from 'react-router-dom'
@@ -83,7 +84,9 @@ export default class BookViewer extends React.Component {
         }
     }
 
-    render() {
+
+
+render() {
         return (
 
             <div>
@@ -94,7 +97,7 @@ export default class BookViewer extends React.Component {
                     <div className="col-3">
                         <a href={"/bookpreview/" + this.props.book.volumeInfo.industryIdentifiers[0].identifier}>
                             <img className="card-img-top"
-                                 src={this.props.book.volumeInfo.imageLinks.thumbnail.replace("zoom=1", "zoom=0")}
+                                 src={this.props.book.volumeInfo.imageLinks.thumbnail}
                                  style={{width: "200px", height: "300px"}}/>
                         </a>
                     </div>
@@ -116,7 +119,7 @@ export default class BookViewer extends React.Component {
                             <div className="col-4">
                                 <p><strong>Rating: </strong>{this.props.book.volumeInfo.averageRating}</p>
 
-                                <p><strong>Category:</strong> {this.props.book.volumeInfo.categories[0]}</p>
+                                {this.props.book.volumeInfo.categories !== undefined && <p><strong>Category:</strong> {this.props.book.volumeInfo.categories[0]}</p>}
                             </div>
                         </div>
 
