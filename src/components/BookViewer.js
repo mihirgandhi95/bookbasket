@@ -4,6 +4,9 @@ import {Link, Route} from 'react-router-dom'
 import {BrowserRouter as Router} from 'react-router-dom'
 import BookPreview from "./BookPreview";
 import BookViewerStyles from "../styles/BookViewerStyle.css"
+import UserService from "../services/UserService";
+import BookService from "../services/BookService";
+import NoteService from "../services/NoteService";
 
 
 export default class BookViewer extends React.Component {
@@ -11,13 +14,74 @@ export default class BookViewer extends React.Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+            user: {userId: ''},
+            book: {},
+            notes: []
+        };
+
+        this.userService = UserService.instance;
+        this.bookService = BookService.instance;
+        this.noteService = NoteService.instance;
+
     }
 
-    handleNotesClick(event)
-    {
 
+    componentDidMount() {
+        this.userService.getProfile().then(response => {
+                if (response.status == 500)
+                    return
+
+                this.setState({
+
+                    user: response
+                });
+                this.bookService.findBookByISBN(this.props.book.volumeInfo.industryIdentifiers[0].identifier).then(response => {
+                    this.setState({
+
+                        book: response
+                    });
+
+                    if(this.state.book!=null)
+                    {
+                        this.noteService.fetchNotesForBooks(this.state.user.userId, this.state.book.id).then(response => {
+                            this.setState({
+
+                                notes: response
+                            });
+                        })
+                    }
+                })
+
+
+            }
+        )
+        ;
     }
 
+    handleNotesClick(event) {
+        console.log(this.state.book);
+        if(this.state.book == null){
+            const newBook ={
+                title: this.props.book.volumeInfo.title,
+                imageLink: this.props.book.volumeInfo.imageLinks.thumbnail,
+                isbn10: this.props.book.volumeInfo.industryIdentifiers[0].identifier
+            };
+
+            this.bookService.addBook(newBook).then(response => {
+                    this.setState({
+
+                        book: response
+                    })
+                console.log(this.state.book);
+
+                }
+            )
+        }
+        else{
+            console.log('in else');
+        }
+    }
 
     render() {
         return (
@@ -63,20 +127,25 @@ export default class BookViewer extends React.Component {
 
                 </div>
                 <br/>
-                <div align="center">
-                    <h4>Personal Notes</h4>
-                </div>
-                <br/>
-                <div className="input-group">
-                    <div className="input-group-prepend">
-                        <span className="input-group-text">Personal Notes</span>
+
+                <div>
+                    <div align="center">
+                        <h4>Personal Notes</h4>
                     </div>
-                    <textarea className="form-control" aria-label="With textarea"></textarea>
-                    <button className="btn btn-primary" onClick={(event) =>{this.handleNotesClick(event)}}>Submit</button>
+                    <br/>
+                    <div className="input-group">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text">Personal Notes</span>
+                        </div>
+                        <textarea className="form-control" aria-label="With textarea"></textarea>
+                        <button className="btn btn-primary" onClick={(event) => {
+                            this.handleNotesClick(event)
+                        }}>Submit
+                        </button>
+                    </div>
+
                 </div>
-
             </div>
-
 
 
         )
