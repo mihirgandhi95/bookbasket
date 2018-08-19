@@ -57,4 +57,16 @@ export default class UserService {
              return null;
         });
     }
+
+
+    updateProfile(user) {
+        return fetch(BASE_URL+'profile', {
+            method: 'put',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            },
+            credentials: "same-origin"
+        }).then(response => response.json())
+    }
 }

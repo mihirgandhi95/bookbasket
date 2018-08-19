@@ -1,8 +1,6 @@
 import React from 'react'
 import $ from "jquery";
-
-
-
+import HeaderComponent from "./HeaderComponent";
 
 
 
@@ -20,16 +18,18 @@ export default class BookPreview extends React.Component {
         window.google.books.setOnLoadCallback(initialize);
     }
 
-
     render() {
         return(
-            <div align ="center" className="pageView">
-                <div>
+            <div>
+                <HeaderComponent/>
+                <div align ="center" className="pageView">
+                    <div>
 
-                            <br/>
-                            <div id="viewerCanvas" style={{width: "600px", height: "800px"}}></div>
+                        <br/>
+                        <div id="viewerCanvas" style={{width: "600px", height: "800px"}}></div>
 
 
+                    </div>
                 </div>
             </div>
         );

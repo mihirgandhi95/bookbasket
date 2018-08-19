@@ -8,6 +8,8 @@ import HomeComponent from "../components/HomeComponent";
 import LoginComponent from "../components/LoginComponent";
 import RegistrationComponent from "../components/RegisterComponent";
 
+import ProfileComponent from "../components/ProfileComponent";
+
 
 export default class BookManager
     extends Component {
@@ -28,6 +30,9 @@ export default class BookManager
                         </Route>
                         <Route path="/register"
                                component={RegistrationComponent}>
+                        </Route>
+                        <Route path="/profile"
+                               component={ProfileComponent}>
                         </Route>
                     </div>
                 </Router>

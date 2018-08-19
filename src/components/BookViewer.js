@@ -95,11 +95,18 @@ render() {
 
                 <div className="row">
                     <div className="col-3">
-                        <a href={"/bookpreview/" + this.props.book.volumeInfo.industryIdentifiers[0].identifier}>
+
+                        {this.state.user.userId == '' && <img className="card-img-top"
+                                                              src={this.props.book.volumeInfo.imageLinks.thumbnail}
+                                                              style={{width: "200px", height: "300px"}}/>}
+
+
+
+                        {this.state.user.userId !== '' &&  <a href={"/bookpreview/" + this.props.book.volumeInfo.industryIdentifiers[0].identifier}>
                             <img className="card-img-top"
                                  src={this.props.book.volumeInfo.imageLinks.thumbnail}
                                  style={{width: "200px", height: "300px"}}/>
-                        </a>
+                        </a>}
                     </div>
                     <div className="col-9">
 
@@ -131,6 +138,7 @@ render() {
                 </div>
                 <br/>
 
+                {this.state.user.userId !== '' &&
                 <div>
                     <div align="center">
                         <h4>Personal Notes</h4>
@@ -146,8 +154,9 @@ render() {
                         }}>Submit
                         </button>
                     </div>
-
                 </div>
+
+                }
             </div>
 
 

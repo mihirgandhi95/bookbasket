@@ -48,7 +48,11 @@ class HeaderComponent extends React.Component {
                 {this.state.user.userId == '' &&
                 <Link to="/login" className="btn btn-success float-right">Login</Link>}
 
-                <Link to="/register" className="btn btn-primary float-right">Register</Link>
+                {this.state.user.userId == '' && <Link to="/register" className="btn btn-primary float-right">Register</Link> }
+
+                <Link to="/home" className="btn btn-primary float-right">Home</Link>
+
+                {this.state.user.userId !== '' && <Link to="/profile" className="btn btn-primary float-right">Profile</Link> }
 
                 {this.state.user.userId !== '' && <button className="btn btn-danger float-right" onClick={() => {
                     this.logoutUserApi()

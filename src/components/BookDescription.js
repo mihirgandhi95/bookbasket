@@ -2,7 +2,8 @@ import React from 'react'
 import $ from "jquery";
 import SearchService from "../services/SearchService"
 import BookViewer from "./BookViewer"
-
+import UserService from "../services/UserService"
+import HeaderComponent from "./HeaderComponent";
 
 
 
@@ -12,14 +13,35 @@ export default class BookDescription extends React.Component {
         super();
         this.state = {
             arrayOfBooksObjectNew : [],
-            title: ''
+            title: '',
+            user: {userId: ''}
         };
 
+        this.userService = UserService.instance;
         this.SearchService = SearchService.instance;
         // this.createSearchForDescription = this.createSearchForDescription.bind(this);
     }
 
     componentDidMount() {
+
+
+        this.userService.getProfile().then(response => {
+                console.log('User in');
+                console.log(response);
+
+                if (response.status == 500)
+                    return
+
+                this.setState({
+                    user: response
+                });
+
+
+            }
+        );
+
+
+
         var id = this.props.match.params.id;
         this.SearchService.createSearchForDescription(id).then((response)=> {
             console.log("************ this is the response for BookDescription***********")
@@ -39,6 +61,12 @@ export default class BookDescription extends React.Component {
 
             // console.log('this.state.arrayofbookobjectsnew is:' + this.state.arrayOfBooksObjectNew);
         });
+    }
+
+
+    logoutUserApi() {
+        this.userService.logoutUser().then(response => window.location.replace('/home'));
+
     }
 
 
@@ -66,9 +94,9 @@ export default class BookDescription extends React.Component {
     render() {
         return(
             <div >
-                <h1>
-                    {this.renderBooksNew()}
-                </h1>
+                <HeaderComponent/>
+
+                <h1>{this.renderBooksNew()}</h1>
 
             </div>
         );

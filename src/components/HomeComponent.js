@@ -89,12 +89,26 @@ export default class HomeComponent extends React.Component {
 
         console.log("rendering books!!!!!!!!!!!!!!!!!!!")
 
-        var grid = this.state.arrayOfBooksObjectHome.slice(0,12).map((book,index)=>{
+
+        // var nonFriends = this.props.list.filter(function (user) {
+        //     return !user.friend;
+        // });
+
+
+        var changearray = this.state.arrayOfBooksObjectHome.filter(function(book){
+            console.log('filter books');
+            console.log(book);
+            return book.isbns.length != 0;
+        });
+
+        console.log(this.state.booksArray);
+
+        var grid = changearray.slice(0,12).map((book,index)=>{
 
             var img = 'https://books.google.com/books/content?id=:idkeyword:&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'.replace(":idkeyword:",this.state.booksArray[index])
 
 
-            console.log(this.state.booksArray[index])
+            // console.log(this.state.booksArray[index])
 
 
             return(
