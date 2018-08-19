@@ -5,6 +5,8 @@ let _singleton = Symbol();
 
 const SEARCH_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
 
+const NEWSEARCH_URL='https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?api-key=';
+
 export default class SearchService {
 
     constructor(singletonToken) {
@@ -42,8 +44,19 @@ export default class SearchService {
 
     createSearchForDescription(isbnId) {
         return fetch(
-            SEARCH_URL+'isbn:'+isbnId).then((response) => {
+            SEARCH_URL+'isbn:'+isbnId+ '&key=AIzaSyDHB4Vd_Nait8qQwwffnOM8Rdg244Eq228').then((response) => {
             return response.json();
         });
     }
+
+
+    createSearchForHome(){
+        return fetch(
+            NEWSEARCH_URL+'4f0ff7ce8c70407ea1c0759b352fb301').then((response) => {
+            return response.json();
+        });
+    }
+
+
+
 }

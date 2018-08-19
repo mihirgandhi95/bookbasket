@@ -7,20 +7,12 @@ import BookPreview from "./BookPreview";
 
 export default class BookCard extends React.Component
 {
-
     constructor(props){
         super(props)
-
     }
-
-
-
 
     render(){
         return (
-
-
-
             <div className="card"
                  styles={{width: '18rem'}}>
 
@@ -35,8 +27,6 @@ export default class BookCard extends React.Component
                     </h5>
                 </div>
             </div>
-
-
         )
     }
 }

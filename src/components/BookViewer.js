@@ -6,10 +6,15 @@ import BookPreview from "./BookPreview";
 import BookViewerStyles from "../styles/BookViewerStyle.css"
 
 
-export default class BookCard extends React.Component {
+export default class BookViewer extends React.Component {
 
     constructor(props) {
         super(props)
+
+    }
+
+    handleNotesClick(event)
+    {
 
     }
 
@@ -34,24 +39,24 @@ export default class BookCard extends React.Component {
 
                         <div className="row">
                             <div className="col-4">
-                                <p><h4>Author: </h4>{this.props.book.volumeInfo.authors[0]}</p>
+                                <p><strong>Author: </strong>{this.props.book.volumeInfo.authors[0]}</p>
                                 {/*<p><h4>Title: </h4> {this.props.book.volumeInfo.title}</p>*/}
 
                             </div>
                             <div className="col-4">
-                                <p><h4>PublishedDate:</h4> {this.props.book.volumeInfo.publishedDate}</p>
+                                <p><strong>PublishedDate:</strong> {this.props.book.volumeInfo.publishedDate}</p>
 
-                                <p><h4>Publisher:</h4> {this.props.book.volumeInfo.publisher}</p>
+                                <p><strong>Publisher:</strong> {this.props.book.volumeInfo.publisher}</p>
 
                             </div>
                             <div className="col-4">
-                                <p><h4>Rating: </h4>{this.props.book.volumeInfo.averageRating}</p>
+                                <p><strong>Rating: </strong>{this.props.book.volumeInfo.averageRating}</p>
 
-                                <p><h4>Category:</h4> {this.props.book.volumeInfo.categories[0]}</p>
+                                <p><strong>Category:</strong> {this.props.book.volumeInfo.categories[0]}</p>
                             </div>
                         </div>
 
-                        <p><h4>Description:</h4> {this.props.book.volumeInfo.description}</p>
+                        <p><strong>Description:</strong> {this.props.book.volumeInfo.description}</p>
 
 
                     </div>
@@ -62,12 +67,12 @@ export default class BookCard extends React.Component {
                     <h4>Personal Notes</h4>
                 </div>
                 <br/>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Personal Notes</span>
+                <div className="input-group">
+                    <div className="input-group-prepend">
+                        <span className="input-group-text">Personal Notes</span>
                     </div>
-                    <textarea class="form-control" aria-label="With textarea"></textarea>
-                    <button className="btn btn-primary">Submit</button>
+                    <textarea className="form-control" aria-label="With textarea"></textarea>
+                    <button className="btn btn-primary" onClick={(event) =>{this.handleNotesClick(event)}}>Submit</button>
                 </div>
 
             </div>

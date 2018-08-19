@@ -2,9 +2,9 @@
 import React,{Component} from 'react';
 import SearchService from "../services/SearchService"
 import BookCard from "./BookCard";
+import $ from 'jquery'
 
 class SearchBar extends React.Component {
-
 
     constructor(){
         super();
@@ -23,13 +23,10 @@ class SearchBar extends React.Component {
     }
 
     createSearch(searchString) {
-
-
+        $("tbody").empty();
         this.SearchService.search(this.state.searchString).then((response)=> {
            // console.log("************ this is the response ***********")
            // console.log(response.items);
-
-
             this.setState(
                 {
                     arrayOfBooksObject: response.items,
@@ -40,6 +37,8 @@ class SearchBar extends React.Component {
 
     renderBooks()
     {
+
+
         var grid = this.state.arrayOfBooksObject.map((book)=>{
 
             console.log("********* each item of the books array *********")
@@ -61,7 +60,6 @@ class SearchBar extends React.Component {
             <div>
             <br/>
                 <div>
-
                         <div className="inputField">
                             {/*<label for="search">Search Books</label>*/}
                             {/*<input type="search" id="books"></input>*/}
@@ -76,12 +74,11 @@ class SearchBar extends React.Component {
                     <div className="card-deck">
                     {this.renderBooks()}
                     </div>
-
-
                 </div>
             </div>
         )
     }
+
 }
 
 
