@@ -52,6 +52,7 @@ export default class LoginComponent extends React.Component {
                     password: response.password,
                     phoneNumber: response.phoneNumber,
                     email: response.email,
+                    googleId: response.googleId
 
                 });
 
@@ -79,7 +80,7 @@ export default class LoginComponent extends React.Component {
                                 })}*/
                         />
                         <br/>
-                        <TextField
+                        {this.state.googleId == null &&  <TextField
                             type="password"
                             hintText="Password"
                             floatingLabelText={this.state.password}
@@ -87,7 +88,7 @@ export default class LoginComponent extends React.Component {
 
                                 password:newValue
                             })}
-                        />
+                        />}
                         <br/>
                         <TextField
                             type="text"
