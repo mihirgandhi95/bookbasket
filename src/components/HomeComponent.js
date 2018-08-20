@@ -97,12 +97,12 @@ export default class HomeComponent extends React.Component {
 
 
         var changearray = this.state.arrayOfBooksObjectHome.filter(function(book){
-            console.log('filter books');
-            console.log(book);
+            // console.log('filter books');
+            // console.log(book);
             return book.isbns.length != 0;
         });
 
-        console.log(this.state.booksArray);
+        // console.log(this.state.booksArray);
 
         var grid = changearray.slice(0,12).map((book,index)=>{
 
