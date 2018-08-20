@@ -44,7 +44,7 @@ export default class SearchService {
 
     createSearchForDescription(isbnId) {
         return fetch(
-            SEARCH_URL+'isbn:'+isbnId+ '&key=AIzaSyB1BSIfH8PbLs-lSRH7iAsqnW1wUHiv0ZQ').then((response) => {
+            SEARCH_URL+'isbn:'+isbnId+ '&key=AIzaSyBfqUBn_yaCZ9QQ8GMSxKmcLK6JKv_08s0').then((response) => {
             return response.json();
         });
     }

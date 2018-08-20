@@ -37,14 +37,14 @@ export default class HomeBook extends React.Component {
                     </a>
                     }
 
-                    <div className="card-body">
+                {/*    <div className="card-body">
                         <h5 className="card-title">
-                            {/*{this.props.book.volumeInfo.title}*/}
+                            {this.props.book.volumeInfo.title}
 
                         </h5>
                         <p className="card-text"></p>
 
-                    </div>
+                    </div>*/}
                 </div>
 
 
