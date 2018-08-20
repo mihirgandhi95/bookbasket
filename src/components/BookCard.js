@@ -22,11 +22,11 @@ export default class BookCard extends React.Component
                      src={this.props.book.volumeInfo.imageLinks.thumbnail.replace("zoom=1","zoom=0")} style={{width: "200px", height: "300px"}}/>
                 </a>
 
-                <div className="card-body">
+             {/*   <div className="card-body">
                     <h5 className="card-title">
-                        {/*{this.props.book.volumeInfo.title}*/}
+                        {this.props.book.volumeInfo.title}
                     </h5>
-                </div>
+                </div>*/}
             </div>
         )
     }
