@@ -67,7 +67,7 @@ class SearchBar extends React.Component {
             <div>
                 <div>
 
-                    <div className="inputField">
+                    <div className="container  inputField">
                         {/*<label for="search">Search Books</label>*/}
                         {/*<input type="search" id="books"></input>*/}
                         {/*<button className="btn btn-primary">Search</button>*/}
@@ -75,7 +75,7 @@ class SearchBar extends React.Component {
                                value={this.state.searchString}
                                className="form-control btn-outline-dark"
                                placeholder="Enter book name here..."/>
-                        <br />
+                        <br/>
                         <button className="btn btn-primary btn-block" onClick={this.createSearch}>Search</button>
                     </div>
                     <div className="card-deck">

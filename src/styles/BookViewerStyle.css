@@ -4,3 +4,27 @@ li {
 p{
     font-size: 15px;
 }
+
+
+h3{
+    font-family: "Arial Rounded MT Bold";
+    font-size: 25px;
+    font-color: white
+}
+
+h1{
+    font-family: "Arial";
+    font-color: white
+}
+
+div{
+    font-family: "monospace";
+    font-size: 25px;
+
+}
+
+a{
+    font-family: "Arial Rounded MT Bold";
+    font-size: 25px;
+    font-color: white
+}
