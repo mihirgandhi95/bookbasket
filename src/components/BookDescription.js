@@ -57,6 +57,7 @@ export default class BookDescription extends React.Component {
                 }
             );
 
+
             console.log(this.state.arrayOfBooksObjectNew);
 
             // console.log('this.state.arrayofbookobjectsnew is:' + this.state.arrayOfBooksObjectNew);

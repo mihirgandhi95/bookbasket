@@ -4,6 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import UserService from "../services/UserService";
+import GoogleLogin from 'react-google-login';
 
 export default class LoginComponent extends React.Component {
 
