@@ -15,7 +15,7 @@ export default class RegisterComponent extends React.Component {
             firstName:'',
             username:'',
             lastName:'',
-            type:'',
+            type:'user',
             email:'',
             password:''
         }
@@ -64,7 +64,7 @@ export default class RegisterComponent extends React.Component {
                         />
                         <br/>
                         <h4>Select User Type:</h4>
-                        <select id="typeSelect" onSelect={this.updateType}>
+                        <select id="typeSelect" onChange={this.updateType}>
                             <option value="user">Registered User</option>
                             <option value="author">Author</option>
                             <option value="admin">Admin</option>
