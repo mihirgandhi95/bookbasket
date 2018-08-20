@@ -47,15 +47,19 @@ class HeaderComponent extends React.Component {
                 {this.state.user !== 'undefined' && <h3>Welcome <strong>{this.state.user.firstName} {this.state.user.lastName}</strong>!</h3>}
 
                 {this.state.user.userId == '' &&
-                <Link to="/login" className="btn btn-success float-right">Login</Link>}
+                <Link to="/login" className="btn btn-success float-right button3 button3">Login</Link>}
+                &nbsp;
 
-                {this.state.user.userId == '' && <Link to="/register" className="btn btn-outline-dark float-right">Register</Link>}
+                {this.state.user.userId == '' && <Link to="/register" className="btn btn-dark float-right button3">Register</Link>}
+                &nbsp;
 
-                <Link to="/home" className="btn btn-primary float-left">Home</Link>
+                <Link to="/home" className="btn btn-primary float-left button3">Home</Link>
+                &nbsp;
 
-                {this.state.user.userId !== '' && <Link to="/profile" className="btn btn-primary float-right">Profile</Link> }
+                {this.state.user.userId !== '' && <Link to="/profile" className="btn btn-primary float-right button3">Profile</Link> }
+                &nbsp;
 
-                {this.state.user.userId !== '' && <button className="btn btn-danger float-right" onClick={() => {
+                {this.state.user.userId !== '' && <button className="btn btn-danger float-right button3" onClick={() => {
                     this.logoutUserApi()
                 }}>Logout</button>}
             <br/>

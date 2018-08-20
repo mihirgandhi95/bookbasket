@@ -3,6 +3,7 @@ import SearchService from "../services/SearchService"
 import {Link,Route} from 'react-router-dom'
 import {BrowserRouter as Router} from 'react-router-dom'
 import BookPreview from "./BookPreview";
+import '../styles/BookViewerStyle.css';
 
 
 export default class BookCard extends React.Component
@@ -13,7 +14,7 @@ export default class BookCard extends React.Component
 
     render(){
         return (
-            <div className="card"
+            <div className="card bookcard"
                  styles={{width: '18rem'}}>
 
                 <a href={"/bookdescription/"+this.props.book.volumeInfo.industryIdentifiers[0].identifier}>

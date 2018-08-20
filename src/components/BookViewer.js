@@ -8,6 +8,7 @@ import UserService from "../services/UserService";
 import BookService from "../services/BookService";
 import NoteService from "../services/NoteService";
 import ReviewService from "../services/ReviewService";
+import '../styles/BookViewerStyle.css';
 
 
 export default class BookViewer extends React.Component {
@@ -167,8 +168,8 @@ export default class BookViewer extends React.Component {
 
 
                         {this.state.user.userId !== '' &&
-                        <a href={"/bookpreview/" + this.props.book.volumeInfo.industryIdentifiers[0].identifier}>
-                            <img className="card-img-top"
+                        <a className="bookcard" href={"/bookpreview/" + this.props.book.volumeInfo.industryIdentifiers[0].identifier}>
+                            <img className="card-img-top bookcard"
                                  src={this.props.book.volumeInfo.imageLinks.thumbnail}
                                  style={{width: "200px", height: "300px"}}/>
                         </a>}
@@ -178,25 +179,25 @@ export default class BookViewer extends React.Component {
 
                         <div className="row">
                             <div className="col-4">
-                                <p><strong>Author: </strong>{this.props.book.volumeInfo.authors[0]}</p>
+                                <p className="bookdetailsTitle"><strong>Author: </strong>{this.props.book.volumeInfo.authors[0]}</p>
                                 {/*<p><h4>Title: </h4> {this.props.book.volumeInfo.title}</p>*/}
 
                             </div>
                             <div className="col-4">
-                                <p><strong>PublishedDate:</strong> {this.props.book.volumeInfo.publishedDate}</p>
+                                <p className="bookdetailsTitle"><strong>PublishedDate:</strong> {this.props.book.volumeInfo.publishedDate}</p>
 
-                                <p><strong>Publisher:</strong> {this.props.book.volumeInfo.publisher}</p>
+                                <p className="bookdetailsTitle"><strong>Publisher:</strong> {this.props.book.volumeInfo.publisher}</p>
 
                             </div>
                             <div className="col-4">
-                                <p><strong>Rating: </strong>{this.props.book.volumeInfo.averageRating}</p>
+                                <p className="bookdetailsTitle"><strong>Rating: </strong>{this.props.book.volumeInfo.averageRating}</p>
 
                                 {this.props.book.volumeInfo.categories !== undefined &&
-                                <p><strong>Category:</strong> {this.props.book.volumeInfo.categories[0]}</p>}
+                                <p className="bookdetailsTitle"><strong>Category:</strong> {this.props.book.volumeInfo.categories[0]}</p>}
                             </div>
                         </div>
 
-                        <p><strong>Description:</strong> {this.props.book.volumeInfo.description}</p>
+                        <p className="bookdetailsTitle"><strong>Description:</strong> {this.props.book.volumeInfo.description}</p>
 
 
                     </div>
@@ -207,32 +208,32 @@ export default class BookViewer extends React.Component {
 
                 {this.state.user.userId !== '' && this.state.user.type == 'user' &&
                 <div className="row">
-                    <div align="center" className="col-6">
-                        <h1>Personal Notes</h1>
-                        <br/>
+                    <div className="col-6">
+                        <h1 align="center" className="ny">Personal Notes</h1>
+
                         <div className="input-group">
                             <div className="input-group-prepend">
-                                <span className="input-group-text">Personal Notes</span>
+                                <span className="input-group-text button3">Personal Notes</span>
                             </div>
                             <textarea
                                 onChange={(event) => {
                                     this.setState({currentNote: event.target.value})
                                     console.log(event.target.value)
                                 }}
-                                className="form-control" aria-label="With textarea">sdsda</textarea>
-                            <button className="btn btn-primary" onClick={(event) => {
+                                className="form-control button3" aria-label="With textarea" placeholder="Enter your notes here..."></textarea>
+                            <button className="btn btn-dark button3" onClick={(event) => {
                                 this.handleNotesClick(event)
                             }}>Submit
                             </button>
                         </div>
-                        {this.state.notes.map(note => <h4> {note.noteComment} </h4>)}
+                        {this.state.notes.map(note => <h4><strong className="note">Note: </strong>  {note.noteComment} </h4>)}
                     </div>
-                    <div align="center" className="col-6">
-                        <h1>Reviews</h1>
+                    <div className="col-6">
+                        <h1 align="center" className="ny">Reviews</h1>
                         {this.state.newReviews.map(review =>
 
                             <div align="center">
-                            <p> Review: {review.reviewText} Reviewer: {review.user.username} </p>
+                                <h4> <strong className="note">Review: </strong> {review.reviewText} <strong className="note">Reviewer: </strong> {review.user.username} </h4>
                             </div>
                         )}
                     </div>
@@ -244,33 +245,33 @@ export default class BookViewer extends React.Component {
                     <div>
                 <div className="row">
                     <div className="col-6">
-                        <h1 align ="center">Add Reviews</h1>
+                        <h1 align="center" className="ny">Add Reviews</h1>
 
                             <div className="input-group">
                                 <div className="input-group-prepend">
-                                    <span className="input-group-text"> Reviews </span>
+                                    <span className="input-group-text button3"> Reviews </span>
                                 </div>
                                 <textarea
                                     onChange={(event) => {
                                         this.setState({currentReview: event.target.value})
                                         console.log(event.target.value)
                                     }}
-                                    className="form-control" aria-label="With textarea">abcde</textarea>
-                                <button className="btn btn-primary" onClick={(event) => {
+                                    className="form-control button3" aria-label="With textarea" placeholder="Enter your review here..."></textarea>
+                                <button className="btn btn-dark button3" onClick={(event) => {
                                     this.handleReviewsClick(event)
                                 }}>Submit
                                 </button>
                             </div>
                         {this.state.reviews.map(review =>
-                            <h4> {review.reviewText}  </h4>
+                            <h4> <strong className="note">My Review: </strong>{review.reviewText}  </h4>
                         )}
 
                     </div>
-                    <div align="center" className="col-6">
-                        <h1>Other Reviews</h1>
+                    <div className="col-6">
+                        <h1 align="center" className="ny">Other Reviews</h1>
                         {this.state.newReviews.map(review =>
                             <div align="center">
-                                <p> Review: {review.reviewText} Reviewer: {review.user.username} </p>
+                                <h4><strong className="note"> Review: </strong> {review.reviewText} <strong className="note">Reviewer: </strong> {review.user.username} </h4>
                             </div>
                         )}
                     </div>
@@ -283,18 +284,18 @@ export default class BookViewer extends React.Component {
                 {this.state.user.userId !== '' && this.state.user.type == 'admin' &&
                 <div>
                             {this.state.newReviews.map(review =>
-                                <div >
+                                <div>
 
 
-                                    <p>
+                                    <h4>
                                         <br/>
-                                        Review: {review.reviewText} Reviewer: {review.user.username}
+                                        <strong className="note">Review: </strong> {review.reviewText} <strong className="note">Reviewer: </strong> {review.user.username}
 
-                                    <button className="btn btn-danger float-right" onClick={(event) => {
+                                    <button className="btn btn-danger button3 float-right" onClick={(event) => {
                                         this.handleReviewDeleteClick(event,review)
                                     }}>Delete
                                     </button>
-                                    </p>
+                                    </h4>
 
                                 </div>
 

@@ -5,26 +5,66 @@ p{
     font-size: 15px;
 }
 
-
-h3{
-    font-family: "Arial Rounded MT Bold";
-    font-size: 25px;
-    font-color: white
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
 
-h1{
-    font-family: "Arial";
-    font-color: white
+.button3 {border-radius: 8px;
+    margin: 4px 2px;
+    box-shadow: 3px 3px 2px grey;
 }
 
-div{
-    font-family: "monospace";
-    font-size: 25px;
-
+.searchbar {border-radius: 12px;
+    margin: 4px 2px;
+    font-size: 20px;
+    text-shadow: 2px 2px 5px red;
+    box-shadow: 10px 10px 5px grey;
 }
 
-a{
-    font-family: "Arial Rounded MT Bold";
-    font-size: 25px;
-    font-color: white
+
+h3 {
+    text-shadow: 2px 2px 5px red;
+    font-style: italic;
+}
+
+h4 {
+    text-shadow: 2px 2px 5px gray;
+    font-style: normal;
+    margin: 14px 12px;
+}
+
+.note {
+    text-shadow: 2px 2px 5px darkslategrey;
+    font-style: normal;
+}
+
+.ny {
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+    font-style: italic;
+    font-family: "Comic Sans MS";
+}
+
+
+.bookcard {
+    box-shadow: 10px 10px 5px grey;
+    margin: 28px 26px;
+}
+
+.bookdetails {
+    box-shadow: 3px 3px 3px grey;
+}
+
+.bookdetailsTitle {
+    text-shadow: 2px 2px 5px grey;
+    font-size: 18px;
+    font-style: normal;
 }

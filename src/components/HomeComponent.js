@@ -5,6 +5,7 @@ import BookViewer from "./BookViewer"
 import HomeBook from "./HomeBook"
 import SearchBar from "./SearchBar"
 import HeaderComponent from "./HeaderComponent";
+import '../styles/BookViewerStyle.css';
 
 
 export default class HomeComponent extends React.Component {
@@ -138,7 +139,7 @@ export default class HomeComponent extends React.Component {
                 <table>
 
                     <tbody>
-                    <h1>NY times Featured Books:</h1>
+                    <h1 className="ny">NY times Featured Books</h1>
                     <div className="card-deck">
                         {this.renderBooksHome()}
                     </div>

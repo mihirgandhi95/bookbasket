@@ -5,6 +5,7 @@ import BookCard from "./BookCard"
 import {Link, Route} from 'react-router-dom'
 import UserService from "../services/UserService";
 import $ from 'jquery';
+import '../styles/BookViewerStyle.css';
 
 class SearchBar extends React.Component {
 
@@ -75,8 +76,7 @@ class SearchBar extends React.Component {
                                value={this.state.searchString}
                                className="form-control btn-outline-dark"
                                placeholder="Enter book name here..."/>
-                        <br/>
-                        <button className="btn btn-primary btn-block" onClick={this.createSearch}>Search</button>
+                        <button className="btn btn-primary btn-block searchbar" onClick={this.createSearch}>Search</button>
                     </div>
                     <div className="card-deck">
                         {this.renderBooks()}

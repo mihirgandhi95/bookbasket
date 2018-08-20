@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import UserService from "../services/UserService";
 import GoogleLogin from 'react-google-login';
+import '../styles/BookViewerStyle.css';
 
 export default class LoginComponent extends React.Component {
 
@@ -49,9 +50,9 @@ export default class LoginComponent extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="-align-center">
                 <MuiThemeProvider>
-                    <div>
+                    <div className="-align-center">
                         <AppBar
                             title="Login"
                         />
@@ -68,10 +69,10 @@ export default class LoginComponent extends React.Component {
                             onChange = {(event,newValue) => this.setState({password:newValue})}
                         />
                         <br/>
-                        <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
-                        <GoogleLogin
+                        <RaisedButton className="searchbar" label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
+                        <GoogleLogin className=" btn btn-danger button3"
                             clientId="76076140323-tdeq6ph7jv4jg2cabols2mg5jfffctrg.apps.googleusercontent.com"
-                            buttonText="Login"
+                            buttonText="Google Login"
                             onSuccess={this.responseGoogle}
                             onFailure={this.responseGoogle}
                         />
