@@ -25,10 +25,10 @@ export default class HomeComponent extends React.Component {
     componentDidMount() {
 
        this.SearchService.createSearchForHome().then((response)=> {
-            console.log("************ this is the response for BookDescription***********")
-            console.log(response);
-            console.log('response.results is' + response.results);
-            // console.log(response.items[0].volumeInfo.allowAnonLogging);
+            // console.log("************ this is the response for BookDescription***********")
+            // console.log(response);
+            // console.log('response.results is' + response.results);
+            // // console.log(response.items[0].volumeInfo.allowAnonLogging);
 
 
             this.setState(
