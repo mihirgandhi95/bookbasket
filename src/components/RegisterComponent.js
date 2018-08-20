@@ -87,7 +87,13 @@ export default class RegisterComponent extends React.Component {
 
     handleClick(event){
     this.service.registerUser(this.state).then((response) => {
-         window.location.replace("/home");
+        if(response.id == null)
+        {
+            alert('user exists!');
+        }
+        else {
+            window.location.replace("/home");
+        }
     });
     }
 

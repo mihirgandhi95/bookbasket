@@ -2,8 +2,8 @@ import React from 'react';
 
 
 let _singleton = Symbol();
-const BASE_URL = 'https://polar-oasis-75619.herokuapp.com/api/';
-// const BASE_URL = 'http://localhost:8080/api/';
+// const BASE_URL = 'https://polar-oasis-75619.herokuapp.com/api/';
+const BASE_URL = 'http://localhost:8080/api/';
 
 export default class NoteService {
 
